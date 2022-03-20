@@ -24,3 +24,13 @@ npm install
 ```
 
 &nbsp;
+
+## Notes
+
+### Notes taken from Error & Exception Handling comment section:
+
+> The first worrying thing I see is that you have included cors middleware, why is that?
+
+> Using the cors middleware without configuring it will be setting access control headers to any client that makes requests to your server/api meaning it will share it's resources with any app out there. If you were making a public API then you may want to do this but not in this app. In development we will be using a proxy provided by create-react-app to forward requests from our client, so we won't have CORS issues in development. In production then both API and client are served from the same origin, so no CORS issues there as we won't be breaking the browsers SOP.
+
+> I often see students install the cors middleware as they feel it is 'fixing' something, but in reality it doesn't truly fix the original issue and introduces bigger issues they are unaware of.
