@@ -27,6 +27,8 @@ npm install
 
 ## Notes
 
+- Refer to frontend folder README.md for notes when creating frontend folder.
+
 ### Notes taken from Error & Exception Handling comment section:
 
 > The first worrying thing I see is that you have included cors middleware, why is that?
