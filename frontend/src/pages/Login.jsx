@@ -26,11 +26,9 @@ const Login = () => {
     e.preventDefault();
     const userData = { email, password };
     dispatch(login(userData)).then((res) => {
-      if (res.error) {
-        toast.error(res.payload);
-      } else {
-        navigate('/');
-      }
+      if (res.error) toast.error(res.payload);
+      if (res.type.includes('fulfilled')) navigate('/');
+
       dispatch(reset());
     });
   };
