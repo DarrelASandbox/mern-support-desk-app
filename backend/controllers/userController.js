@@ -18,15 +18,17 @@ const registerUser = asyncHandler(async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
   const user = await User.create({ name, email, password: hashedPassword });
-  const token = await user.generateAuthToken(user._id);
 
-  if (user)
+  if (user) {
+    const token = await user.generateAuthToken();
+
     return res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,
       token,
     });
+  }
 
   res.status(400);
   throw new Error('Invalid user data.');
@@ -35,9 +37,9 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  const token = await user.generateAuthToken(user._id);
 
   if (user && (await bcrypt.compare(password, user.password))) {
+    const token = await user.generateAuthToken();
     res.status(200).json({
       _id: user._id,
       name: user.name,

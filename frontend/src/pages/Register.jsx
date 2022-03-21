@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -19,9 +19,7 @@ const Register = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user, isLoading, isSuccess, isError, message } = useSelector(
-    (state) => state.auth
-  );
+  const { isLoading } = useSelector((state) => state.auth);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -63,8 +61,7 @@ const Register = () => {
               name={name}
               onChange={onChange}
               placeholder='Enter your name'
-              required
-            ></input>
+              required></input>
           </div>
           <div className='form-group'>
             <input
@@ -75,8 +72,7 @@ const Register = () => {
               name={email}
               onChange={onChange}
               placeholder='Enter your email'
-              required
-            ></input>
+              required></input>
           </div>
           <div className='form-group'>
             <input
@@ -87,8 +83,7 @@ const Register = () => {
               name={password}
               onChange={onChange}
               placeholder='Enter your password'
-              required
-            ></input>
+              required></input>
           </div>
           <div className='form-group'>
             <input
@@ -99,8 +94,7 @@ const Register = () => {
               name={confirmPassword}
               onChange={onChange}
               placeholder='Confirm your password'
-              required
-            ></input>
+              required></input>
           </div>
 
           <div className='form-group'>
