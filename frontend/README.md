@@ -17,6 +17,15 @@ cd ..
 
 &nbsp;
 
+- [react-component on setstate](https://reactjs.org/docs/react-component.html#setstate)
+  - NewTicket page:
+    ```js
+    setProduct(e.target.value);
+    setDescription(e.target.value);
+    ```
+
+&nbsp;
+
 ### Notes from Route Guard comment section:
 
 > <b>Q:</b> In the firebase project in the useAuthState hook we had to create an isMounted variable with useRef to avoid potential memory leak due to async nature of checking the user auth state. Why did we not need to do it here? Id it because in the firebase project we had to use getAuth() to check for a user, where here we are using Redux?
