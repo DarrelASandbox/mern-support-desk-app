@@ -23,13 +23,6 @@ const Register = () => {
     (state) => state.auth
   );
 
-  useEffect(() => {
-    if (isError) toast.error(message);
-    if (isSuccess || user) navigate('/');
-
-    dispatch(reset());
-  }, [isError, isSuccess, user, message, navigate, dispatch]);
-
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.id]: e.target.value });
 
@@ -39,7 +32,11 @@ const Register = () => {
       return toast.error('Password does not match.');
     } else {
       const userData = { name, email, password };
-      dispatch(register(userData));
+      dispatch(register(userData)).then((res) => {
+        if (res.error) toast.error(res.payload);
+        else navigate('/');
+        dispatch(reset());
+      });
     }
   };
 
