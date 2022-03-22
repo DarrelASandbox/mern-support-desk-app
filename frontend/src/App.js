@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Header, PrivateRoute } from './components/';
-import { Home, Login, NewTicket, Register } from './pages';
+import { Home, Login, NewTicket, Register, Tickets } from './pages';
 
 function App() {
   return (
@@ -20,6 +20,14 @@ function App() {
               element={
                 <PrivateRoute>
                   <NewTicket />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path='/tickets'
+              element={
+                <PrivateRoute>
+                  <Tickets />
                 </PrivateRoute>
               }
             />
