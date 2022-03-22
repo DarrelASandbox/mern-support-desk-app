@@ -1,17 +1,34 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { BackButton, Spinner } from '../components';
+import { createTicket, reset } from '../features/ticket/ticketSlice';
 
 const NewTicket = () => {
   const { user } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.ticket);
+
   const [product, setProduct] = useState('iPhone');
   const [description, setDescription] = useState('');
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(createTicket({ product, description })).then((res) => {
+      if (res.error) toast.error(res.payload);
+      else navigate('/tickets');
+      dispatch(reset());
+    });
   };
+
+  if (isLoading) return <Spinner />;
 
   return (
     <>
+      <BackButton url='/' />
       <section className='heading'>
         <h1>Create New Ticket</h1>
         <p>Please fill out the form below.</p>
