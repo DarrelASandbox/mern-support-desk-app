@@ -5,17 +5,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { BackButton, NoteItem, Spinner } from '../components';
-import { getNotes } from '../features/note/noteSlice';
+import { getNotes, createNote } from '../features/note/noteSlice';
 import { closeTicket, getTicket } from '../features/ticket/ticketSlice';
 
 const customStyles = {
   content: {
+    width: '600px',
     top: '50%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    position: 'relative',
   },
 };
 
@@ -56,7 +58,9 @@ const Ticket = () => {
 
   const onNoteSubmit = (e) => {
     e.preventDefault();
-    console.log('Note submit');
+    dispatch(createNote({ noteText, ticketId })).then((res) => {
+      if (res.error) toast.error(res.error.payload);
+    });
     closeModal();
   };
 

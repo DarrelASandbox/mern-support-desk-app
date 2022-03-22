@@ -21,7 +21,6 @@ const noteSchema = new mongoose.Schema(
     },
     staffId: {
       type: String,
-      default: false,
     },
   },
   {
