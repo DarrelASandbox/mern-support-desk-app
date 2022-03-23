@@ -23,6 +23,8 @@ cd frontend
 npm install
 ```
 
+3. Remove '.template' extension from .env.template.
+
 &nbsp;
 
 ## Notes
